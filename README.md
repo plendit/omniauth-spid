@@ -11,9 +11,11 @@ subsidiary of Schibsted ASA.
 
 ## Basic Usage
 
-    use OmniAuth::Builder do
-      provider :spid, ENV['SPID_KEY'], ENV['SPID_SECRET']
-    end
+```ruby
+use OmniAuth::Builder do
+  provider :spid, ENV['SPID_KEY'], ENV['SPID_SECRET']
+end
+```
 
 Note: by default it will connect to the Norwegian staging API:
 
@@ -23,42 +25,45 @@ Note: by default it will connect to the Norwegian staging API:
 
 You need to override the site value to point to the correct production API url.
 
-    provider :spid, ENV['SPID_KEY'], ENV['SPID_SECRET'],
-        {
-          :client_options => {
-            :site => ENV['SPID_BASE_URL']
-          }
-        }
-
+```ruby
+provider :spid, ENV['SPID_KEY'], ENV['SPID_SECRET'],
+    {
+      :client_options => {
+        :site => ENV['SPID_BASE_URL']
+      }
+    }
+```
 
 ## Auth Hash
 
 Here's an example of an authentication hash available in the callback by accessing request.env["omniauth.auth"]:
 
-    {
-        :provider => "spid",
-        :uid => "123456789",
-        :info => {
-            :nickname => "John Doe",
-            :email => "john@company_name.com",
-            :name => "John Doe",
-            :first_name => "John",
-            :last_name => "Doe",
-            :image => "https://secure.gravatar.com/avatar/1b19ea6c3e4033d54bfcb14d0f8b814a?s=200",
-            :url => ""
-        },
-        :credentials => {
-            :token => "token",
-            :refresh_token => "another_token",
-            :expires_at => 1354920555,
-            :expires => true
-        },
-        :extra => {
-            :raw_info => {
-                (...)
-            }
+```ruby
+{
+    :provider => "spid",
+    :uid => "123456789",
+    :info => {
+        :nickname => "John Doe",
+        :email => "john@company_name.com",
+        :name => "John Doe",
+        :first_name => "John",
+        :last_name => "Doe",
+        :image => "https://secure.gravatar.com/avatar/1b19ea6c3e4033d54bfcb14d0f8b814a?s=200",
+        :url => ""
+    },
+    :credentials => {
+        :token => "token",
+        :refresh_token => "another_token",
+        :expires_at => 1354920555,
+        :expires => true
+    },
+    :extra => {
+        :raw_info => {
+            (...)
         }
     }
+}
+```
 
 The information in :raw_info is documented at http://techdocs.spid.no/endpoints/GET/me/
 
